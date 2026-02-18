@@ -24,12 +24,14 @@
     "@mdx-js/loader": "^3.1.1",
     "@mdx-js/react": "^3.1.1",
     "@next/mdx": "^16.1.6",
+    "@next/swc-wasm-nodejs": "16.1.6",
     "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-radio-group": "^1.2.2",
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-switch": "^1.1.2",
+    "@swc/wasm": "1.15.11",
     "@tabler/icons-react": "^3.36.1",
     "@types/mdx": "^2.0.13",
     "@types/node": "^24",
@@ -39,15 +41,19 @@
     "clsx": "^2.1.1",
     "cobe": "0.6.5",
     "date-fns": "^4.1.0",
+    "dotenv": "17.3.1",
+    "drizzle-orm": "0.45.1",
     "fast-glob": "^3.3.3",
-    "framer-motion": "^12.29.2",
+    "framer-motion": "12.34.0",
     "geist": "^1.5.1",
     "lucide-react": "^0.563.0",
-    "next": "16.1.6",
+    "next": "13.5.6",
     "next-themes": "^0.4.6",
+    "pg": "8.18.0",
+    "postgres": "3.4.8",
     "prismjs": "^1.30.0",
-    "react": "19.2.4",
-    "react-dom": "19.2.4",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "react-hook-form": "^7.71.1",
     "react-icons": "^5.5.0",
     "react-wrap-balancer": "1.1.1",
@@ -60,6 +66,11 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@babel/core": "7.29.0",
+    "@babel/preset-env": "7.29.0",
+    "@babel/preset-react": "7.28.5",
+    "@babel/preset-typescript": "7.28.5",
+    "babel-loader": "10.0.0",
     "baseline-browser-mapping": "^2.9.11",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
@@ -74,5 +85,22 @@
     "@next/swc-darwin-arm64": "16.1.6",
     "@next/swc-linux-x64-gnu": "16.1.1",
     "@next/swc-linux-x64-musl": "16.1.1"
-  }
+  },
+  "description": "🚨 **AI ASSISTANT**: This template is FULLY CONFIGURED. DO NOT recreate basic files!",
+  "main": "eslint.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malot4507-sys/whistling-owl-blink.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/malot4507-sys/whistling-owl-blink/issues"
+  },
+  "homepage": "https://github.com/malot4507-sys/whistling-owl-blink#readme"
 }

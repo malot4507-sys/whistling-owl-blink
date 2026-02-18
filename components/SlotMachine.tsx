@@ -1,8 +1,8 @@
-import { SlotMachine } from "./SlotMachine";
 "use client";
 
 import { Container } from "@/components/container";
 import { Card } from "@/components/ui/card";
+import { SlotMachine } from "./SlotMachine";
 
 export function Games() {
   const games = [
@@ -36,13 +36,13 @@ export function Games() {
     <section id="games" className="py-24 md:py-32 bg-[var(--surface)]">
       <Container>
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 
+          <h2
             className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight"
             style={{ fontFamily: "'Bebas Neue', sans-serif" }}
           >
             Premium Casino Games
           </h2>
-          <p 
+          <p
             className="text-xl text-gray-400 max-w-2xl mx-auto"
             style={{ fontFamily: "'Outfit', sans-serif" }}
           >
@@ -54,34 +54,34 @@ export function Games() {
           {games.map((game, index) => (
             <Card
               key={index}
-              className={`p-8 bg-gradient-to-br ${game.color} bg-opacity-10 border-2 border-transparent hover:border-current transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl cursor-pointer animate-fade-in-up`}
-              style={{ 
+              className={`p-8 bg-gradient-to-br ${game.color} bg-opacity-10 border-2 border-transparent hover:border-current transition-all duration-500 hover:-translate-y-2`}
+              style={{
                 animationDelay: `${index * 100}ms`,
                 background: `linear-gradient(135deg, rgba(0,217,255,0.05) 0%, rgba(255,0,255,0.05) 100%)`,
                 borderColor: 'rgba(0,217,255,0.2)',
               }}
             >
-              <div className="text-6xl mb-4">{game.icon}</div>
-              <h3 
-                className="text-3xl font-bold text-white mb-3"
-                style={{ fontFamily: "'Bebas Neue', sans-serif" }}
-              >
-                {game.title}
-              </h3>
-              <p 
-                className="text-gray-300 leading-relaxed"
-                style={{ fontFamily: "'Outfit', sans-serif" }}
-              >
-                {game.description}
-              </p>
-              <div className="mt-6">
-                <button 
-                  className="text-[var(--brand)] font-semibold hover:text-[var(--brand-light)] transition-colors duration-300 flex items-center gap-2"
-                  style={{ fontFamily: "'Outfit', sans-serif" }}
-                >
-                  Play Now <span>→</span>
-                </button>
-              </div>
+              {game.title === "Slot Machines" ? (
+                <div className="flex flex-col items-center">
+                  <SlotMachine />
+                </div>
+              ) : (
+                <>
+                  <div className="text-6xl mb-4">{game.icon}</div>
+                  <h3
+                    className="text-3xl font-bold text-white mb-3"
+                    style={{ fontFamily: "'Bebas Neue', sans-serif" }}
+                  >
+                    {game.title}
+                  </h3>
+                  <p
+                    className="text-gray-300 leading-relaxed"
+                    style={{ fontFamily: "'Outfit', sans-serif" }}
+                  >
+                    {game.description}
+                  </p>
+                </>
+              )}
             </Card>
           ))}
         </div>
