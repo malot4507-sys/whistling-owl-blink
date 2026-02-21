@@ -1,14 +1,22 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { pool } from "@/lib/db";
-
 const SYMBOLS = ["🍒","🍋","🍉","⭐"];
 
-export async function POST() {
-  const bet = 1;
-  const userId = "demo";
+export async function POST(req: Request) {
+  const { userId, bet } = await req.json();
 
-  // Seeds provably fair
+  const user = await pool.query(
+    "SELECT balance FROM users WHERE id=$1",
+    [userId]
+  );
+
+  if (!user.rows.length)
+    return NextResponse.json({ error: "Usuario no existe" });
+
+  if (user.rows[0].balance < bet)
+    return NextResponse.json({ error: "Saldo insuficiente" });
+
   const serverSeed = crypto.randomBytes(32).toString("hex");
   const clientSeed = crypto.randomBytes(16).toString("hex");
 
@@ -22,7 +30,6 @@ export async function POST() {
     .update(serverSeed + clientSeed + nonce)
     .digest("hex");
 
-  // RNG determinístico
   function pick(i: number) {
     const slice = hash.slice(i * 8, i * 8 + 8);
     const num = parseInt(slice, 16);
@@ -33,6 +40,12 @@ export async function POST() {
   const winAmount =
     reels[0] === reels[1] && reels[1] === reels[2] ? bet * 100 : 0;
 
+  // actualizar balance
+  await pool.query(
+    "UPDATE users SET balance = balance - $1 + $2 WHERE id=$3",
+    [bet, winAmount, userId]
+  );
+
   await pool.query(
     `INSERT INTO spins
     (bet, win, nonce, server_seed, client_seed, hash, reels, user_id)
@@ -42,7 +55,6 @@ export async function POST() {
 
   return NextResponse.json({
     reels,
-    win: winAmount > 0,
     payout: winAmount,
     nonce,
     hash,
